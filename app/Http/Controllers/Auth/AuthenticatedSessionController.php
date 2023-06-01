@@ -39,6 +39,8 @@ class AuthenticatedSessionController extends Controller
 
         // generate a temporary url and email the user.
         $link = URL::temporarySignedRoute('login.token', now()->addHour(), ['user' => $user->id]);
+        $user->login_link_used = false;
+        $user->save();
 
         $user->notify(new Login($link));
 
@@ -61,8 +63,16 @@ class AuthenticatedSessionController extends Controller
 
     public function loginViaToken(User $user)
     {
+        // Check if the login link has already been used
+        if ($user->login_link_used) {
+            return redirect()->route('login')->withErrors(['link' => 'Login link has expired. Please request a new one.']);
+        }
 
         Auth::login($user);
+
+        // Set the login_link_used field to true
+        $user->login_link_used = true;
+        $user->save();
 
         request()->session()->regenerate();
 
