@@ -1,66 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Passwordless Authentication App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
 
-## About Laravel
+This Laravel application implements a passwordless authentication system, allowing users to register with a traditional email-password combination and subsequently logging in using a unique login link sent via email. The unique login link is valid for a limited time and can only be used once, ensuring secure and convenient access.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**User Registration:**
+  - Users can register by providing their name, email, and password.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Passwordless Authentication:**
+  - After registration, users can log in without entering a password.
+  - The login form only requires the user's email.
 
-## Learning Laravel
+**Unique Login Links:**
+  - Upon login attempt, the system generates a unique login link and sends it to the user's email.
+  - The login link is valid for 10 minutes.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Security Measures:**
+  - The login link can only be used once.
+  - Sessions are used to track and manage login attempts and link expiration.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   ```
 
-## Laravel Sponsors
+2. **Install Dependencies:**
+   ```bash
+   cd your-repo
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. **Set Up Environment Variables:**
+   - Duplicate the `.env.example` file and rename it to `.env`.
+   - Update the `DB_` and `MAIL_` variables with your database and mail server credentials.
+   - Generate a new application key:
+     ```bash
+     php artisan key:generate
+     ```
 
-### Premium Partners
+4. **Run Migrations:**
+   ```bash
+   php artisan migrate
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. **Serve the Application:**
+   ```bash
+   php artisan serve
+   ```
+
+6. **Access the Application:**
+   Open your web browser and navigate to `http://localhost:8000`.
+
+## Usage
+
+1. **Register:**
+   - Visit the registration page and fill in the required information.
+
+2. **Login:**
+   - Log in using only your email.
+
+3. **Receive Login Link:**
+   - Check your email for the unique login link.
+
+4. **Click Login Link:**
+   - Click on the login link within 10 minutes to access your account.
+
+5. **Logout:**
+   - Log out to invalidate the current login link.
+
+## Additional Configuration
+
+- **Session Lifetime:**
+  - You can customize the session lifetime in the `config/session.php` file.
+
+- **Email Configuration:**
+  - Adjust email configurations in the `config/mail.php` file.
+
+## Troubleshooting
+
+If you encounter any issues or have questions, please check the [issue tracker](https://github.com/jareerzeenam/laravel-passwordless-login/issues) for existing problems or create a new one.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Feel free to contribute to the development of this application by creating issues or pull requests.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This Laravel Passwordless Authentication App is open-source software licensed under the [MIT License](LICENSE).
+
+---
+
+This README template is a starting point; feel free to expand or modify it based on your application's specific details and requirements.
