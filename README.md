@@ -25,12 +25,12 @@ This Laravel application implements a passwordless authentication system, allowi
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/jareerzeenam/laravel-passwordless-login.git
    ```
 
 2. **Install Dependencies:**
    ```bash
-   cd your-repo
+   cd laravel-passwordless-login
    composer install
    ```
 
